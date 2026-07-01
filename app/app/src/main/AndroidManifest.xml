@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Application volontairement hors ligne : aucune permission INTERNET. -->
+    <application
+        android:name=".SecondPulseApplication"
+        android:allowBackup="true"
+        android:label="Second Pulse"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.SecondPulse">
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+</manifest>

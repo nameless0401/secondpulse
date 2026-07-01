@@ -1,0 +1,172 @@
+{
+  "contentVersion": "sample-0.1",
+  "startBlockId": "BLOCK-PRO-001",
+  "incompatibleRoutes": {
+    "ROUTE-PRESENCE": [
+      "ROUTE-EFFACEMENT"
+    ],
+    "ROUTE-EFFACEMENT": [
+      "ROUTE-PRESENCE"
+    ]
+  },
+  "blocks": [
+    {
+      "id": "BLOCK-PRO-001",
+      "actId": "PROLOGUE",
+      "chapterId": "PRO-CH01",
+      "sceneId": "SCN-PRO-01",
+      "anchorId": "ANCHOR-PRO-001",
+      "temporalContext": "Prologue • 3 septembre • 49 ans",
+      "paragraphs": [
+        "Quatrième jour après l’intervention, et quelque chose ne va pas.",
+        "La douleur derrière le sternum revient. Tu connais la conduite à tenir, mais tu connais aussi toutes les phrases capables de la différer."
+      ],
+      "choice": {
+        "id": "CHOICE-PRO-001",
+        "prompt": "Que fais-tu de l’alerte ?",
+        "options": [
+          {
+            "id": "OPT-PRO-001-A",
+            "visibleLabel": "Appeler immédiatement.",
+            "intentSubtitle": "Reconnaître le danger sans le négocier.",
+            "eligibility": {
+              "type": "always"
+            },
+            "effects": [
+              {
+                "type": "setVar",
+                "key": "alerte_reconnue",
+                "value": {
+                  "type": "bool",
+                  "value": true
+                }
+              },
+              {
+                "type": "route",
+                "routeId": "ROUTE-PRESENCE",
+                "phase": "INCLINATION",
+                "evidenceId": "OPT-PRO-001-A"
+              },
+              {
+                "type": "journal",
+                "id": "JRN-001",
+                "title": "Une alerte reconnue",
+                "body": "Tu as cessé de traiter ton propre corps comme une variable secondaire.",
+                "sourceEventIds": [
+                  "OPT-PRO-001-A"
+                ]
+              }
+            ],
+            "nextBlockId": "BLOCK-PRO-002"
+          },
+          {
+            "id": "OPT-PRO-001-B",
+            "visibleLabel": "Finir le rapport.",
+            "intentSubtitle": "Repousser encore ce qui te concerne.",
+            "eligibility": {
+              "type": "always"
+            },
+            "effects": [
+              {
+                "type": "route",
+                "routeId": "ROUTE-EFFACEMENT",
+                "phase": "INCLINATION",
+                "evidenceId": "OPT-PRO-001-B"
+              },
+              {
+                "type": "schedule",
+                "consequenceId": "CONS-PRO-001",
+                "dueAnchorId": "ANCHOR-PRO-002"
+              }
+            ],
+            "nextBlockId": "BLOCK-PRO-002"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BLOCK-PRO-002",
+      "actId": "ACT-01",
+      "chapterId": "ACT01-CH01",
+      "sceneId": "SCN-RETURN-01",
+      "anchorId": "ANCHOR-PRO-002",
+      "temporalContext": "Acte I • Chapitre 1 • 3 septembre • 17 ans",
+      "paragraphs": [
+        "La première chose qui revient est une fausse note.",
+        "Sous ta joue, le matelas est trop étroit. L’oreiller sent la lessive de ta mère.",
+        "Mira joue derrière le mur. Maman parle dans la cuisine."
+      ],
+      "choice": {
+        "id": "CHOICE-RETURN-001",
+        "prompt": "Comment réagir au retour ?",
+        "options": [
+          {
+            "id": "OPT-RETURN-EXAMEN",
+            "visibleLabel": "Examiner le corps et la chambre.",
+            "intentSubtitle": "Commencer par ce qui peut être vérifié.",
+            "neutralContextLabel": "[Expérience médicale]",
+            "eligibility": {
+              "type": "always"
+            },
+            "effects": [
+              {
+                "type": "setVar",
+                "key": "methode_retour",
+                "value": {
+                  "type": "text",
+                  "value": "examen"
+                }
+              },
+              {
+                "type": "encounter",
+                "characterId": "CHAR-MIRA"
+              }
+            ],
+            "nextBlockId": "BLOCK-ACT01-002"
+          },
+          {
+            "id": "OPT-RETURN-VOIX",
+            "visibleLabel": "Aller vers les voix.",
+            "intentSubtitle": "Voir celles que la mort avait réduites à des souvenirs.",
+            "eligibility": {
+              "type": "always"
+            },
+            "effects": [
+              {
+                "type": "setVar",
+                "key": "methode_retour",
+                "value": {
+                  "type": "text",
+                  "value": "voix"
+                }
+              },
+              {
+                "type": "encounter",
+                "characterId": "CHAR-MIRA"
+              },
+              {
+                "type": "encounter",
+                "characterId": "CHAR-ELENA"
+              }
+            ],
+            "nextBlockId": "BLOCK-ACT01-002"
+          }
+        ]
+      }
+    },
+    {
+      "id": "BLOCK-ACT01-002",
+      "actId": "ACT-01",
+      "chapterId": "ACT01-CH01",
+      "sceneId": "SCN-FAMILY-01",
+      "anchorId": "ANCHOR-ACT01-002",
+      "temporalContext": "Acte I • Chapitre 1 • 3 septembre • 17 ans",
+      "paragraphs": [
+        "La poignée s’abaisse.",
+        "Mira a quinze ans. L’ironie dans sa voix est intacte.",
+        "La maison continue autour de toi, sans savoir ce qu’elle vient de te rendre."
+      ],
+      "nextBlockId": null
+    }
+  ]
+}
